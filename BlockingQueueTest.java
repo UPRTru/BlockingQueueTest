@@ -10,7 +10,7 @@ public class BlockingQueue {
     }
 
     public synchronized void enqueue(Object o) throws InterruptedException {
-        while (items.size() == maxSize) {
+        while (items.size() == maxSize || items.contains(o)) {
             wait();
         }
         items.add(o);
@@ -18,7 +18,7 @@ public class BlockingQueue {
     }
 
     public synchronized void dequeue(Object o) throws InterruptedException {
-        while (items.isEmpty()) {
+        while (items.isEmpty() || !items.contains(o)) {
             wait();
         }
         items.remove(o);
