@@ -14,7 +14,7 @@ public class BlockingQueue {
             wait();
         }
         items.add(o);
-        notify();
+        notifyAll();
     }
 
     public synchronized void dequeue(Object o) throws InterruptedException {
@@ -22,7 +22,7 @@ public class BlockingQueue {
             wait();
         }
         items.remove(o);
-        notify();
+        notifyAll();
     }
 
     public int size() {
